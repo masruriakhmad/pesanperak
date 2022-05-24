@@ -30,8 +30,7 @@ class Pengaduan_model extends CI_Model
       // get groupby bulan
       function get_groupby_bulan()
       {
-        $query= "SELECT MONTH(tgl_input)  AS bulan,
-        COUNT(no_pengaduan) AS jml_pengaduan
+        $query= "SELECT DISTINCT MONTH(tgl_input) AS bulan, COUNT(no_pengaduan) AS jml_pengaduan
         FROM 
         pengaduan
         GROUP BY bulan

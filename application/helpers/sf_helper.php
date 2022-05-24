@@ -116,6 +116,7 @@ function data_app($id = 'APP_NAME')
     
 }
 
+//fungsi layout untuk dipanggil di setiap controller
 function layout($l = 'back')
 {
     if ($l == 'front') {
@@ -125,6 +126,8 @@ function layout($l = 'back')
     }
 }
 
+
+//fungsi cek session akses
 function cek_session_akses($link, $id)
 {
     $ci      = &get_instance();
@@ -134,6 +137,7 @@ function cek_session_akses($link, $id)
     }
 }
 
+//fungsi mendapatkan data user
 function get_data_users()
 {
     $ci = &get_instance();
@@ -148,6 +152,7 @@ function get_data_users()
     return $users_disposisi;
 }
 
+//fungsi menampilkan jumlah wor pada suatu table
 function get_numrows($tbl)
 {
     $ci = &get_instance();
@@ -172,6 +177,7 @@ function activate_menu($controller, $by = 'c')
     return ($class == $controller) ? 'active' : '';
 }
 
+//fungsi format rupiah
 function format_rupiah($number)
 {
 
@@ -186,6 +192,7 @@ function formatBytes($size, $precision = 2)
     return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
 }
 
+//fungsi lookup untuk menampilkan modal lookup
 function lookup()
 {?>
 <div class="modal" id="lookup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -206,7 +213,7 @@ function lookup()
     </div>
 <?php }
 
-
+//fungsi nama hari
 function nama_hari($day){
 $dayList = array(
     'Sun' => 'Minggu',
@@ -221,6 +228,7 @@ $dayList = array(
 return $dayList[$day];
 }
 
+//fungsi tanggal format indonesia
 function tanggal_indo($tanggal){
     $bulan = array (
         1 =>   'Januari',
@@ -245,6 +253,7 @@ function tanggal_indo($tanggal){
     echo $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 
+//fungsi generator kode
 function GenerateCode() {
     $possible ='123456789';
     $operator ='+x-';   
@@ -267,6 +276,7 @@ function GenerateCode() {
     return $code ;
 }
 
+//fungsi backup Database
 function backupDB(){
 
 // Try this, You can change format zip to gz if you like :)
