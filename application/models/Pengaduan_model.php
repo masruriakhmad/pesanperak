@@ -27,6 +27,8 @@ class Pengaduan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+
+    
       // get groupby bulan
       function get_groupby_bulan()
       {
