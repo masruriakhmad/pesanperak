@@ -10,10 +10,13 @@
 
     <link href="<?=base_url()?>assets/vendor/inspinia/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
-       <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Data Table -->
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
     <!-- Morris -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
@@ -246,7 +249,16 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    
+    <!-- Mainly scripts Data Table -->
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jeditable/jquery.jeditable.js"></script>
 
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/dataTables/datatables.min.js"></script>
+    
     <!-- Morris -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/morris.js"></script>
@@ -328,33 +340,6 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
         });
 
     </script>
-    <!--
-    <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
-
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
-
-            });
-        });
-    </script>
-    -->
 
     <script>
         $(document).ready(function(){
@@ -488,10 +473,34 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
 
 
 
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-
-} );
     </script>
+     
+    <script>
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+        });
+    </script>
+    -->
+
 </body>
 </html>
