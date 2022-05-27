@@ -342,12 +342,20 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
     </script>
 
     <script>
+        //fungsi jika document telah diload semua
         $(document).ready(function(){
+            //sembunyikan id_id_desa_pelapor
             $("id_desa_pelapor").hide();
+             //sembunyikan id_desa_korban
             $("id_desa_korban").hide();
+             //sembunyikan id_desa_kejadian
             $("id_desa_kejadian").hide();
+
+            //fungsi load pelapor
             loaddesa_pelapor();
+            //fungsi load korban
             loaddesa_korban();
+            //fungsi load kejadian
             loaddesa_kejadian();
         });
 
@@ -480,11 +488,10 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
+                   // { extend: 'copy'},
+                   // {extend: 'csv'},
                     {extend: 'excel', title: 'ExampleFile'},
                     {extend: 'pdf', title: 'ExampleFile'},
-
                     {extend: 'print',
                      customize: function (win){
                             $(win.document.body).addClass('white-bg');
@@ -500,7 +507,14 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
             });
         });
     </script>
-    -->
+    
+  <script>
+    $(function() {
+    $("#tanggal").datepicker({
+    dateFormat: 'yy/mm/dd'
+      });
+    });
+  </script>
 
 </body>
 </html>

@@ -74,7 +74,7 @@ class Backend extends CI_Controller {
         );
 
 
-        print($data['data_graph']);
+        //print($data['data_graph']);
        // var_dump($data_graph);
 
         $this->load->view('layout_backend.php', $data);
