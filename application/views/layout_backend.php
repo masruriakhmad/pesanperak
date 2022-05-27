@@ -32,26 +32,28 @@
 <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
 <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script>
+<script>
                 var loadFile = function (event) {
                 var output = document.getElementById('prev1');
+                
                 output.src = URL.createObjectURL(event.target.files[0]);
                 output.onload = function () {
                   URL.revokeObjectURL(output.src)
                   // free memory
                 }
               };
-  </script>
-  <script>
+</script>
+<script>
                 var loadFile2 = function (event) {
                 var output = document.getElementById('prev2');
+
                 output.src = URL.createObjectURL(event.target.files[0]);
                 output.onload = function () {
                   URL.revokeObjectURL(output.src)
                   // free memory
                 }
               };
-  </script>
+</script>
 
     <style>
   html { height: 100% !important; }

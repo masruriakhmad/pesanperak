@@ -305,7 +305,7 @@ force_download($db_name, $backup);
 // pastikan untuk menggunakan sf_upload, di controller._rules field jangan di required
 function sf_upload($nama_gambar, $lokasi_gambar, $tipe_gambar, $ukuran_gambar, $name_file_form) {
     $CI                    = &get_instance();
-    $nmfile                = $nama_gambar . "_" . time();
+    $nmfile                = $nama_gambar; //. "_" . time();
     $config['upload_path'] = './' . $lokasi_gambar;
     //tambahi skrip disini is_dir exist
     $config['allowed_types'] = $tipe_gambar;
@@ -313,7 +313,7 @@ function sf_upload($nama_gambar, $lokasi_gambar, $tipe_gambar, $ukuran_gambar, $
     $config['file_name']     = $nmfile;
     $CI->load->library('upload', $config);
     $CI->upload->do_upload($name_file_form);
-    // die($CI->upload->display_errors());
+    //die($CI->upload->display_errors());
     $result1 = $CI->upload->data();
     $result  = ['gambar' => $result1];
     $dfile   = $result['gambar']['file_name'];

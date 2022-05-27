@@ -40,7 +40,7 @@
       <div class="col-md-12">
         <h1 class="mt-4"> Form dengan Live Image Preview</h1>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
 
           <div class="form-group">
             <label for="nama"></label>
@@ -58,6 +58,9 @@
           <div>
             <br><img src="" width="200px" height="215px" id="prev">
           </div>
+
+          
+	    <button type="submit" class="btn btn-primary">Simpan</button> 
 
 
         </form>

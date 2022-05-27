@@ -302,9 +302,6 @@ class Pengaduan extends CI_Controller
 
 	    );
 
-		$f_ktp_pelapor 	= $this->input->post('f_ktp_pelapor', TRUE);
-		$f_ktp_korban 	= $this->input->post('f_ktp_korban',TRUE);
-
             if($this->input->method()==='post')
             {
 
@@ -390,8 +387,8 @@ class Pengaduan extends CI_Controller
 			$lokasi_gambar 	= '/uploads/ktp/';
 			$tipe_gambar 	= 'jpg|jpeg|png';
 			$ukuran_gambar 	= 2048;
-			sf_upload($nik_pelapor, $lokasi_gambar, $tipe_gambar, $ukuran_gambar, $f_ktp_pelapor);
-			sf_upload($nik_korban, $lokasi_gambar, $tipe_gambar, $ukuran_gambar, $f_ktp_korban);
+			sf_upload($data['nik_pelapor'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
+			sf_upload($data['nik_korban'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
            	$this->Pelapor_model->insert($data_pelapor);
             $this->Korban_model->insert($data_korban);
             $this->Pengaduan_model->insert($data);
