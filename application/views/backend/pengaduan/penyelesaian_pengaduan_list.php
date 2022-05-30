@@ -76,6 +76,7 @@
 				<?php  
 				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
                 if(is_allow('Action Penyelesaian')){
+                echo ' | ';
 				echo anchor(site_url('pengaduan/penyelesaian_create/'.$pengaduan->id_pengaduan),'Penyelesaian','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('pengaduan/penyelesaian_cancel/'.$pengaduan->id_pengaduan),'Batalkan','class="text-navy" onclick="javascript: return confirm(\'Yakin ingin membatalkan penyelesaian?\')"'); 
@@ -95,7 +96,7 @@
 		<?php echo anchor(site_url('pengaduan/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div>
             <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
+            <?php echo $pagination ?>
             </div>
         </div>
         </div>

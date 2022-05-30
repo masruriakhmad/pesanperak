@@ -32,11 +32,13 @@
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('pengaduan/index'); ?>" class="form-inline" method="get">
+               
+            <form action="<?php echo site_url('pengaduan/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
                             <?php 
+                                //jika variable q tidak kosong makan tuliskan tombol reset
                                 if ($q <> '')
                                 {
                                     ?>
@@ -48,6 +50,7 @@
                         </span>
                     </div>
                 </form>
+            
             </div>
         </div>
         <div class="table-responsive" id="myTable">
@@ -99,16 +102,18 @@
             </tbody>
         </table>
     </div>
+        
         <div class="row">
-            <div class="col-md-6">
+        <div class="col-md-6">
                 <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
 		<?php echo anchor(site_url('pengaduan/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('pengaduan/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
+        <div class="col-md-6 text-right">
+        <?php echo $pagination ?>
         </div>
+        </div>
+        
         </div>
     </div>
     </div>

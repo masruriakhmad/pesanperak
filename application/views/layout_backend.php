@@ -306,11 +306,11 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/iCheck/icheck.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
+
+    <!--Data Tables-->
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/DataTables/datatables.min.js"></script>
+
   
-      <!--DATA TABLE
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
-  -->
 
 <!--Data Graph-->
   <script>
