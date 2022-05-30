@@ -77,7 +77,7 @@
                 
 				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
 				echo ' | '; 
-                if(is_allow('Monitoring')){
+                if(is_allow('Action Monitoring')){
 				echo anchor(site_url('pengaduan/monitoring_create/'.$pengaduan->id_pengaduan),'Monitoring','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('pengaduan/monitoring_cancel/'.$pengaduan->id_pengaduan),'Batalkan','class="text-navy" onclick="javascript: return confirm(\'Yakin ingin membatalkan monitoring?\')"'); 

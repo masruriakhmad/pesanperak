@@ -44,9 +44,9 @@
             </div>
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
-            <tr>
-                <th class="text-center">No</th>
+        <thead class="thead-light">
+        <tr>
+        <th class="text-center">No</th>
 		<th class="text-center">No Pengaduan</th>
 		<th class="text-center">Nama Pelapor</th>
 		<th class="text-center">Nama Korban</th>
@@ -75,17 +75,14 @@
 			<td style="text-align:center" width="200px">
 				<?php  
 				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
-				echo ' | '; 
-
-                if(is_allow('Penyelesaian')){
+                if(is_allow('Action Penyelesaian')){
 				echo anchor(site_url('pengaduan/penyelesaian_create/'.$pengaduan->id_pengaduan),'Penyelesaian','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('pengaduan/penyelesaian_cancel/'.$pengaduan->id_pengaduan),'Batalkan','class="text-navy" onclick="javascript: return confirm(\'Yakin ingin membatalkan penyelesaian?\')"'); 
             }
                 ?>
 			</td>
-		</tr>
-                
+		</tr>      
                 <?php
             }
             ?>

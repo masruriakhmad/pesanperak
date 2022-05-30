@@ -77,8 +77,7 @@
 			
                 
                     echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
-            if(is_allow('TL')){
-                  
+            if(is_allow('Action Tindaklanjut')){
 				    echo ' | '; 
                     echo anchor(site_url('pengaduan/tindaklanjut_create/'.$pengaduan->id_pengaduan),'Tindak Lanjut','class="text-navy"'); 
 				    echo ' | '; 

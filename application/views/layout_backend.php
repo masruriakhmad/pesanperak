@@ -139,7 +139,8 @@ foreach($data_menu as $menu){
     }
 }
 */
-if($this->session->userdata('id_group') != 1){
+if($this->session->userdata('id_group') != 1){    
+$this->db->distinct('sy_menu.label');
 $this->db->order_by('order_no','asc');
 $this->db->join('sy_menu','sy_menu.id_menu=user_access.id_menu');
 $this->db->where('sy_menu.parent',0);

@@ -74,11 +74,8 @@
 			<td><?php echo $pengaduan->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
 				<?php  
-                if($session_desa!=NULL){
                 echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
-				
-                }else{
-				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
+                if(is_allow('Action Selesai')){ 
 				echo ' | '; 
 				echo anchor(site_url('pengaduan/monitoring_create/'.$pengaduan->id_pengaduan),'Monitoring','class="text-navy"'); 
 				echo ' | '; 

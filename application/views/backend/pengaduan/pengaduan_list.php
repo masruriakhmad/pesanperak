@@ -17,9 +17,15 @@
                  <?php }?>
                 </div>
                 <div class="ibox-content">
+
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('pengaduan/create'),'Tambah Pengaduan', 'class="btn btn-primary"'); ?>
+                <?php 
+                if(is_allow('Tombol Input Pengaduan')){
+                echo anchor(site_url('pengaduan/create'),'Tambah Pengaduan', 'class="btn btn-primary"'); 
+                }
+                ?>
+                
             </div>
             
             
@@ -76,15 +82,13 @@
 			<td><?php echo $pengaduan->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
 				<?php  
-                if($session_desa!=NULL){
                 echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
-				echo ' | '; 
+            if(is_allow('Pengaduan')){	
+                echo ' | '; 
 				echo anchor(site_url('pengaduan/update/'.$pengaduan->id_pengaduan),'Update','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('pengaduan/delete/'.$pengaduan->id_pengaduan),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-                }else{
-				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
-                }
+            } 
                 ?>
 			</td>
 		</tr>
