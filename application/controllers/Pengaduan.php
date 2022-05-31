@@ -63,7 +63,7 @@ class Pengaduan extends CI_Controller
 
         //data yang akan digunakan pada view
 		$data = array(
-            'pengaduan_data' 	=> json_encode($pengaduan),
+            'pengaduan_data' 	=> $pengaduan,
             'q' 				=> $q, 									//pendeklarasian variabel q
             'pagination' 		=> $this->pagination->create_links(), 	// pembuatan link untuk pagination
             'total_rows' 		=> $config['total_rows'], 				//variabel untuk total baris
@@ -72,10 +72,18 @@ class Pengaduan extends CI_Controller
             'content' 			=> 'backend/pengaduan/pengaduan_list', 	//data content yang dipanggil
         );
 
-		/*
-		var_dump($data['pengaduan_data']);
-		$datalist=$data['pengaduan_data'];
+		
+		//header('Content-Type: application/json');
+                echo json_encode(
+                    array(
+                        'success' => true,
+                        'message' => 'Data table',
+						'data'	  => $pengaduan
+                    )
+                );
 
+		//var_dump($data['pengaduan_data']);
+		/*
 		foreach($datalist AS $dataset){
 			echo $dataset->no_pengaduan;
 			echo "<br>";
@@ -223,17 +231,17 @@ class Pengaduan extends CI_Controller
 	    'no_pengaduan' 			=> $this->Pengaduan_model->get_no_pengaduan(),
 	    'tempat_kejadian' 		=> set_value('tempat_kejadian'),
 	    'id_desa' 				=> set_value('id_desa'),
-	    'nama_desa' => set_value('nama_desa'),
-	    'id_kecamatan' => set_value('id_kecamatan'),
-	    'nama_kecamatan' => set_value('nama_kecamatan'),
-	    'kronologi' => set_value('kronologi'),
-	    'tgl_kejadian' => set_value('tgl_kejadian'),
-	    'tgl_tindak_lanjut' => set_value('tgl_tindak_lanjut'),
-	    'note_tindak_lanjut' => set_value('note_tindak_lanjut'),
-	    'tgl_penyelesaian' => set_value('tgl_penyelesaian'),
-	    'note_penyelesaian' => set_value('note_penyelesaian'),
-	    'tgl_monitoring' => set_value('tgl_monitoring'),
-	    'note_monitoring' => set_value('note_monitoring'),
+	    'nama_desa' 			=> set_value('nama_desa'),
+	    'id_kecamatan' 			=> set_value('id_kecamatan'),
+	    'nama_kecamatan' 		=> set_value('nama_kecamatan'),
+	    'kronologi' 			=> set_value('kronologi'),
+	    'tgl_kejadian' 			=> set_value('tgl_kejadian'),
+	    'tgl_tindak_lanjut' 	=> set_value('tgl_tindak_lanjut'),
+	    'note_tindak_lanjut' 	=> set_value('note_tindak_lanjut'),
+	    'tgl_penyelesaian' 		=> set_value('tgl_penyelesaian'),
+	    'note_penyelesaian' 	=> set_value('note_penyelesaian'),
+	    'tgl_monitoring' 		=> set_value('tgl_monitoring'),
+	    'note_monitoring' 		=> set_value('note_monitoring'),
 	    'tgl_input' => set_value('tgl_input'),
 	    'id_flag' => set_value('id_flag'),
 	    'id_user' => set_value('id_user'),
