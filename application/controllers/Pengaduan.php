@@ -17,84 +17,102 @@ class Pengaduan extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('sf');
 
-
     }
 
     //fungsi index
     public function index()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
+		//variable q  dari input tex pencarian
+		//variable start dari nomr urut ditampilan dataset di view
+        $q 		= urldecode($this->input->get('q', TRUE));
+        $start	= intval($this->input->get('start'));
         
+		//jika variabel q tidak bernilai kosong maka base url dan first url ditambah urlencode dari variablel q
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['first_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+
+		//jika tidak maka base url dan first url adalah index.html
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] 	= base_url() . 'pengaduan/index.html';
+            $config['first_url'] 	= base_url() . 'pengaduan/index.html';
         }
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pengaduan_model->total_rows($q);
+		//setting pagination
+        $config['per_page'] 		= 10;
+        $config['page_query_string']= TRUE;
+        $config['total_rows'] 		= $this->Pengaduan_model->total_rows($q);
 		
         $user_desa= $this->session->userdata('id_desa');
-		$flag=1;
+		$flag	=1;
+
+		//jika user desa tidak null data difilter by user data
         if($user_desa!=NULL){
 
 			$pengaduan = $this->Pengaduan_model->get_limit_data_where($config['per_page'], $start, $q, $user_desa,$flag);
 			
+		//jika tidak data tidak difilter menurut user desa	
         }else{
 
 			$pengaduan = $this->Pengaduan_model->get_limit_data($config['per_page'], $start, $q, $flag);
 
         }
         
-
+		//meload library  dan inisialisasi pagination bawaan codeigniter dengan config yang ada
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        $data = array(
-            'pengaduan_data' => $pengaduan,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-			'session_desa'=> $this->session->userdata('id_desa'),
-            'content' => 'backend/pengaduan/pengaduan_list',
+        //data yang akan digunakan pada view
+		$data = array(
+            'pengaduan_data' 	=> json_encode($pengaduan),
+            'q' 				=> $q, 									//pendeklarasian variabel q
+            'pagination' 		=> $this->pagination->create_links(), 	// pembuatan link untuk pagination
+            'total_rows' 		=> $config['total_rows'], 				//variabel untuk total baris
+            'start' 			=> $start, 								//pendeklarasian variabel start
+			'session_desa'		=> $this->session->userdata('id_desa'), //data session user desa
+            'content' 			=> 'backend/pengaduan/pengaduan_list', 	//data content yang dipanggil
         );
 
-       //echo '<pre>';  print_r($pengaduan); echo '</pre>';
+		/*
+		var_dump($data['pengaduan_data']);
+		$datalist=$data['pengaduan_data'];
+
+		foreach($datalist AS $dataset){
+			echo $dataset->no_pengaduan;
+			echo "<br>";
+		}
+		*/
+
         $this->load->view(layout(), $data);
     }
 
     //fungsi lookup
     public function lookup()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
+        $q 		= urldecode($this->input->get('q', TRUE));
+        $start 	= intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['first_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] 	= base_url() . 'pengaduan/index.html';
+            $config['first_url'] 	= base_url() . 'pengaduan/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
+        $config['per_page'] 		= 10;
+        $config['page_query_string']= TRUE;
         $config['total_rows'] = $this->Pengaduan_model->total_rows($q);
         $pengaduan = $this->Pengaduan_model->get_limit_data($config['per_page'], $start, $q);
 
 
         $data = array(
-            'pengaduan_data' => $pengaduan,
-            'idhtml' => $idhtml,
-            'q' => $q,
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-            'content' => 'backend/pengaduan/pengaduan_lookup',
+            'pengaduan_data' 	=> $pengaduan,
+            'idhtml' 			=> $idhtml,
+            'q' 				=> $q,
+            'total_rows' 		=> $config['total_rows'],
+            'start' 			=> $start,
+            'content' 			=> 'backend/pengaduan/pengaduan_lookup',
         );
         ob_start();
         $this->load->view($data['content'], $data);
@@ -105,75 +123,80 @@ class Pengaduan extends CI_Controller
     //fungsi read pengaduan
     public function read($id) 
     {
+		//pengambilan row/hasil query read dari table pengaduan
         $row 			= $this->Pengaduan_model->get_by_id($id);
         
         //ambil nik pelapor dan korban
         $nik_pelapor 	= $row->nik_pelapor;
         $nik_korban 	= $row->nik_korban;
 
-        //untuk data pelapor
+        //pengambilan data  pelapor
         $row_pelapor 	= $this->Pelapor_model->get_by_nik($nik_pelapor);
         
-        //untuk data korban
+        //pengambilan data korban korban
         $row_korban 	= $this->Korban_model->get_by_nik($nik_korban);
         
+		//jika hasil $row True makan set data dari table
         if ($row) {
-
+			//data array untuk dilempar ke view
             $data = array(
-		'id_pengaduan' => $row->id_pengaduan,
-		'no_pengaduan' => $row->no_pengaduan,
+		'id_pengaduan' 			=> $row->id_pengaduan,
+		'no_pengaduan' 			=> $row->no_pengaduan,
 
 		//pelapor
-		'nik_pelapor' => $row->nik_pelapor,
-		'nama_pelapor' => $row->nama_pelapor,
-		'id_agama_pelapor' => $row_pelapor->id_agama,
-		'nama_agama_pelapor' => $row_pelapor->nama_agama,
-		'id_desa_pelapor' => $row_pelapor->id_desa,
-		'nama_desa_pelapor' => $row_pelapor->nama_desa,
-		'alamat_pelapor' => $row->alamat_pelapor,
-		'no_hp_pelapor' => $row->no_hp_pelapor,
-		'id_kecamatan_pelapor' => $row_pelapor->id_kecamatan,
-		'nama_kecamatan_pelapor' => $row_pelapor->nama_kecamatan,
+		'nik_pelapor' 			=> $row->nik_pelapor,
+		'nama_pelapor' 			=> $row->nama_pelapor,
+		'id_agama_pelapor' 		=> $row_pelapor->id_agama,
+		'nama_agama_pelapor' 	=> $row_pelapor->nama_agama,
+		'id_desa_pelapor' 		=> $row_pelapor->id_desa,
+		'nama_desa_pelapor' 	=> $row_pelapor->nama_desa,
+		'alamat_pelapor' 		=> $row->alamat_pelapor,
+		'no_hp_pelapor' 		=> $row->no_hp_pelapor,
+		'id_kecamatan_pelapor' 	=> $row_pelapor->id_kecamatan,
+		'nama_kecamatan_pelapor'=> $row_pelapor->nama_kecamatan,
 
 		//korban
-		'nik_korban' => $row->nik_korban,
-		'nama_korban' => $row->nama_korban,
-		'id_agama_korban' => $row_korban->id_agama,
-		'nama_agama_korban' => $row_korban->nama_agama,
-		'id_desa_korban' => $row_korban->id_desa,
-		'nama_desa_korban' => $row_korban->nama_desa,
-		'alamat_korban' => $row->alamat_korban,
-		'no_hp_korban' => $row->no_hp_korban,
-		'id_kecamatan_korban' => $row_korban->id_kecamatan,
+		'nik_korban' 			=> $row->nik_korban,
+		'nama_korban' 			=> $row->nama_korban,
+		'id_agama_korban' 		=> $row_korban->id_agama,
+		'nama_agama_korban' 	=> $row_korban->nama_agama,
+		'id_desa_korban' 		=> $row_korban->id_desa,
+		'nama_desa_korban' 		=> $row_korban->nama_desa,
+		'alamat_korban' 		=> $row->alamat_korban,
+		'no_hp_korban' 			=> $row->no_hp_korban,
+		'id_kecamatan_korban' 	=> $row_korban->id_kecamatan,
 		'nama_kecamatan_korban' => $row_korban->nama_kecamatan,
 		
 		//kejadian
-		'tempat_kejadian' => $row->tempat_kejadian,
-		'id_desa_kejadian' => $row->id_desa,
-		'nama_desa_kejadian' => $row->nama_desa,
+		'tempat_kejadian' 		=> $row->tempat_kejadian,
+		'id_desa_kejadian' 		=> $row->id_desa,
+		'nama_desa_kejadian' 	=> $row->nama_desa,
 		'id_kecamatan_kejadian' => $row->id_kecamatan,
-		'nama_kecamatan_kejadian' => $row->nama_kecamatan,
-		'kronologi' => $row->kronologi,
-		'tgl_kejadian' => $row->tgl_kejadian,
+		'nama_kecamatan_kejadian'=> $row->nama_kecamatan,
+		'kronologi' 			=> $row->kronologi,
+		'tgl_kejadian' 			=> $row->tgl_kejadian,
 		
 		//tindaklanjut
-		'tgl_tindak_lanjut' => $row->tgl_tindak_lanjut,
-		'note_tindak_lanjut' => $row->note_tindak_lanjut,
-		'tgl_penyelesaian' => $row->tgl_penyelesaian,
-		'note_penyelesaian' => $row->note_penyelesaian,
-		'tgl_monitoring' => $row->tgl_monitoring,
-		'note_monitoring' => $row->note_monitoring,
+		'tgl_tindak_lanjut' 	=> $row->tgl_tindak_lanjut,
+		'note_tindak_lanjut' 	=> $row->note_tindak_lanjut,
+		'tgl_penyelesaian' 		=> $row->tgl_penyelesaian,
+		'note_penyelesaian' 	=> $row->note_penyelesaian,
+		'tgl_monitoring' 		=> $row->tgl_monitoring,
+		'note_monitoring' 		=> $row->note_monitoring,
 		
 		//keterangan
-		'tgl_input' => $row->tgl_input,
-		'nama_flag' => $row->nama_flag,
-		'id_user' => $row->id_user,
+		'tgl_input' 			=> $row->tgl_input,
+		'nama_flag' 			=> $row->nama_flag,
+		'id_user' 				=> $row->id_user,
 
 		//content
-		'content' => 'backend/pengaduan/pengaduan_read',
+		'content' 				=> 'backend/pengaduan/pengaduan_read',
 	    );
 
+			//panggil view
             $this->load->view(layout(), $data);
+
+		//jika $row tidak true redirect ke Pengaduan Index
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pengaduan'));
@@ -192,14 +215,14 @@ class Pengaduan extends CI_Controller
     	}else {
         
         $data = array(
-        'button' => 'Create',
-        'action' => site_url('pengaduan/create_action'),
+        'button' 				=> 'Create',
+        'action' 				=> site_url('pengaduan/create_action'),
 
         //Data Aduan
-	    'id_pengaduan' => set_value('id_pengaduan'),
-	    'no_pengaduan' => $this->Pengaduan_model->get_no_pengaduan(),
-	    'tempat_kejadian' => set_value('tempat_kejadian'),
-	    'id_desa' => set_value('id_desa'),
+	    'id_pengaduan' 			=> set_value('id_pengaduan'),
+	    'no_pengaduan' 			=> $this->Pengaduan_model->get_no_pengaduan(),
+	    'tempat_kejadian' 		=> set_value('tempat_kejadian'),
+	    'id_desa' 				=> set_value('id_desa'),
 	    'nama_desa' => set_value('nama_desa'),
 	    'id_kecamatan' => set_value('id_kecamatan'),
 	    'nama_kecamatan' => set_value('nama_kecamatan'),
@@ -264,11 +287,11 @@ class Pengaduan extends CI_Controller
         } else {
 
         	$data_pelapor=array(
-       	'nik_pelapor' => $this->input->post('nik_pelapor',TRUE),
-	    'nama_pelapor' => $this->input->post('nama_pelapor',TRUE),
-	    'id_agama' => $this->input->post('id_agama_pelapor',TRUE),
-	    'alamat_pelapor' => $this->input->post('alamat_pelapor',TRUE),
-	    'id_desa' => $this->input->post('id_desa_pelapor',TRUE),
+       	'nik_pelapor' 	=> $this->input->post('nik_pelapor',TRUE),
+	    'nama_pelapor' 	=> $this->input->post('nama_pelapor',TRUE),
+	    'id_agama' 		=> $this->input->post('id_agama_pelapor',TRUE),
+	    'alamat_pelapor'=> $this->input->post('alamat_pelapor',TRUE),
+	    'id_desa' 		=> $this->input->post('id_desa_pelapor',TRUE),
 	    'no_hp_pelapor' => $this->input->post('no_hp_pelapor',TRUE),
         	);
 
@@ -304,85 +327,6 @@ class Pengaduan extends CI_Controller
 
             if($this->input->method()==='post')
             {
-
-			/*
-				$nik0=1;//$this->input->post('nik_pelapor',TRUE);
-				$nik1=2;///$this->input->post('nik_korban',TRUE);
-
-				$file0='f_ktp_pelapor';
-				$file1='f_ktp_korban';
-
-				$config['upload_path']=FCPATH.'/uploads/ktp/';
-				$config['allowed_types']='jpg|jpeg|png';
-				$config['overwrite']=false;
-				$config['max_size']=1024;
-				//$config['max_width']=1080;
-				//$config['max_height']=1080;
-				$config['file_name']=$this->input->post('no_pengaduan',TRUE);
-				$this->load->library('upload', $config);
-				$this->upload->do_upload('f_ktp_pelapor');
-				$this->upload->do_upload('f_ktp_korban');
-
-
-			/*$x=0;
-            for ($x=0 ; $x<=1; $x++){
-				
-
-				$file_name=$x;
-				$config['upload_path']=FCPATH.'/uploads/ktp/';
-				$config['allowed_types']='jpg|jpeg|png';
-				$config['overwrite']=true;
-				$config['max_size']=1024;
-				//$config['max_width']=1080;
-				//$config['max_height']=1080;
-				$config['file_name']=$file_name;
-				$this->load->library('upload', $config);
-				if(!$this->upload->do_upload('f_ktp_pelapor')){
-
-				$this->session->set_flashdata('message', $this->upload->display_errors());
-				redirect(site_url('pengaduan/create'));
-
-				}
-
-			/*
-				if($x==0){
-					
-					$file_name1=$data['nik_pelapor'];
-					$config['upload_path']=FCPATH.'/uploads/ktp/';
-					$config['allowed_types']='jpg|jpeg|png';
-					$config['overwrite']=false;
-					$config['max_size']=1024;
-					//$config['max_width']=1080;
-					//$config['max_height']=1080;
-					$config['file_name']=$file_name1;
-					$this->load->library('upload', $config);
-					if(!$this->upload->do_upload('f_ktp_pelapor')){
-
-						$this->session->set_flashdata('message', $this->upload->display_errors());
-						redirect(site_url('pengaduan/create'));
-					$config['file_name']=NULL;
-					}
-				}else if($x==1){
-					
-					$file_name2=$data['nik_korban'];
-					$config['upload_path']=FCPATH.'/uploads/ktp/';
-					$config['allowed_types']='jpg|jpeg|png';
-					$config['overwrite']=false;
-					$config['max_size']=1024;
-					//$config['max_width']=1080;
-					//$config['max_height']=1080;	
-					$config['file_name']=$file_name2;
-					$this->load->library('upload', $config);
-
-					if(!$this->upload->do_upload('f_ktp_korban')){
-
-						$this->session->set_flashdata('message', $this->upload->display_errors());
-						redirect(site_url('pengaduan/create'));
-					}
-				}
-				
-			}
-			*/
 
 			$lokasi_gambar 	= '/uploads/ktp/';
 			$tipe_gambar 	= 'jpg|jpeg|png';
