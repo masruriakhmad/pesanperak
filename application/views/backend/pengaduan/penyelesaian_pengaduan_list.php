@@ -55,7 +55,7 @@
         <th class="text-center">Kecamatan</th>
 		<th class="text-center">Tanggal Kejadian</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
+		<th class="text-center col-md-2">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -74,12 +74,12 @@
 			<td><?php echo $pengaduan->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
 				<?php  
-				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
+				echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="btn btn-xs btn-primary"'); 
                 if(is_allow('Action Penyelesaian')){
                 echo ' | ';
-				echo anchor(site_url('pengaduan/penyelesaian_create/'.$pengaduan->id_pengaduan),'Penyelesaian','class="text-navy"'); 
+				echo anchor(site_url('pengaduan/penyelesaian_create/'.$pengaduan->id_pengaduan),'Penyelesaian','class="btn btn-xs btn-warning"'); 
 				echo ' | '; 
-				echo anchor(site_url('pengaduan/penyelesaian_cancel/'.$pengaduan->id_pengaduan),'Batalkan','class="text-navy" onclick="javascript: return confirm(\'Yakin ingin membatalkan penyelesaian?\')"'); 
+				echo anchor(site_url('pengaduan/penyelesaian_cancel/'.$pengaduan->id_pengaduan),'Batalkan','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin ingin membatalkan penyelesaian?\')"'); 
             }
                 ?>
 			</td>

@@ -24,7 +24,8 @@ class Pengaduan extends CI_Controller
     {
 		//variable q  dari input tex pencarian
 		//variable start dari nomr urut ditampilan dataset di view
-        $q 		= urldecode($this->input->get('q', TRUE));
+        $flag=1;
+		$q 		= urldecode($this->input->get('q', TRUE));
         $start	= intval($this->input->get('start'));
         
 		//jika variabel q tidak bernilai kosong maka base url dan first url ditambah urlencode dari variablel q
@@ -43,7 +44,6 @@ class Pengaduan extends CI_Controller
         $config['total_rows'] 		= $this->Pengaduan_model->total_rows($q);
 		
         $user_desa= $this->session->userdata('id_desa');
-		$flag	=1;
 
 		//jika user desa tidak null data difilter by user data
         if($user_desa!=NULL){
@@ -506,11 +506,11 @@ class Pengaduan extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pengaduan/tindaklanjut_index/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pengaduan/tindaklanjut_index/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] = base_url() . 'pengaduan/tindaklanjut_index/index.html';
+            $config['first_url'] = base_url() . 'pengaduan/tindaklanjut_index/index.html';
         }
 
         $config['per_page'] = 10;
@@ -650,16 +650,10 @@ class Pengaduan extends CI_Controller
         } else {
 
             $data = array(
-		'no_pengaduan' => $this->input->post('no_pengaduan',TRUE),
+		'no_pengaduan' 		=> $this->input->post('no_pengaduan',TRUE),
 		'tgl_tindak_lanjut' => $this->input->post('tgl_tindak_lanjut',TRUE),
-		'note_tindak_lanjut' => $this->input->post('note_tindak_lanjut',TRUE),
-		'id_flag' => 2 //$this->input->post('note_tindak_lanjut',TRUE),
-		/*
-		'tgl_penyelesaian' => $this->input->post('tgl_penyelesaian',TRUE),
-		'note_penyelesaian' => $this->input->post('note_penyelesaian',TRUE),
-		'tgl_monitoring' => $this->input->post('tgl_monitoring',TRUE),
-		'note_monitoring' => $this->input->post('note_monitoring',TRUE),
-		*/
+		'note_tindak_lanjut'=> $this->input->post('note_tindak_lanjut',TRUE),
+		'id_flag' 			=> 2
 		);
         
             $this->Pengaduan_model->update($this->input->post('id_pengaduan', TRUE), $data);
@@ -718,11 +712,11 @@ class Pengaduan extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pengaduan/penyelesaian_index/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pengaduan/penyelesaian_index/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] = base_url() . 'pengaduan/penyelesaian_index/index.html';
+            $config['first_url'] = base_url() . 'pengaduan/penyelesaian_index/index.html';
         }
 
         $config['per_page'] = 10;
@@ -925,11 +919,11 @@ class Pengaduan extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pengaduan/monitoring_index/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pengaduan/monitoring_index/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] = base_url() . 'pengaduan/monitoring_index/index.html';
+            $config['first_url'] = base_url() . 'pengaduan/monitoring_index/index.html';
         }
 
         $config['per_page'] = 10;
@@ -1126,11 +1120,11 @@ class Pengaduan extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pengaduan/selesai_index/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pengaduan/selesai_index/index.html?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'pengaduan/index.html';
-            $config['first_url'] = base_url() . 'pengaduan/index.html';
+            $config['base_url'] = base_url() . 'pengaduan/selesai_index/index.html';
+            $config['first_url'] = base_url() . 'pengaduan/selesai_index/index.html';
         }
 
         $config['per_page'] = 10;

@@ -85,12 +85,12 @@
 			<td><?php echo $pengaduan->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
 				<?php  
-                echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="text-navy"'); 
+                echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="btn btn-xs btn-primary"'); 
             if(is_allow('Pengaduan')){	
                 echo ' | '; 
-				echo anchor(site_url('pengaduan/update/'.$pengaduan->id_pengaduan),'Update','class="text-navy"'); 
+				echo  anchor(site_url('pengaduan/update/'.$pengaduan->id_pengaduan),'Update','class="btn btn-xs btn-warning"'); 
 				echo ' | '; 
-				echo anchor(site_url('pengaduan/delete/'.$pengaduan->id_pengaduan),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('pengaduan/delete/'.$pengaduan->id_pengaduan),'Delete','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
             } 
                 ?>
 			</td>
@@ -105,7 +105,7 @@
         
         <div class="row">
         <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
+        <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
 		<?php echo anchor(site_url('pengaduan/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('pengaduan/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div>

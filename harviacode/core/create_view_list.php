@@ -70,11 +70,11 @@ foreach ($non_pk as $row) {
 
 $string .= "\n\t\t\t<td style=\"text-align:center\" width=\"200px\">"
         . "\n\t\t\t\t<?php "
-        . "\n\t\t\t\techo anchor(site_url('".$c_url."/read/'.$".$c_url."->".$pk."),'Read','class=\"text-navy\"'); "
+        . "\n\t\t\t\techo anchor(site_url('".$c_url."/read/'.$".$c_url."->".$pk."),'Read','class=\"btn btn-xs btn-primary\"'); "
         . "\n\t\t\t\techo ' | '; "
-        . "\n\t\t\t\techo anchor(site_url('".$c_url."/update/'.$".$c_url."->".$pk."),'Update','class=\"text-navy\"'); "
+        . "\n\t\t\t\techo anchor(site_url('".$c_url."/update/'.$".$c_url."->".$pk."),'Update','class=\"btn btn-xs btn-warning\"'); "
         . "\n\t\t\t\techo ' | '; "
-        . "\n\t\t\t\techo anchor(site_url('".$c_url."/delete/'.$".$c_url."->".$pk."),'Delete','class=\"text-navy\" onclick=\"javascript: return confirm(\\'Yakin hapus data?\\')\"'); "
+        . "\n\t\t\t\techo anchor(site_url('".$c_url."/delete/'.$".$c_url."->".$pk."),'Delete','class=\"btn btn-xs btn-danger\" onclick=\"javascript: return confirm(\\'Yakin hapus data?\\')\"'); "
         . "\n\t\t\t\t?>"
         . "\n\t\t\t</td>";
 

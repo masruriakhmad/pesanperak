@@ -61,11 +61,11 @@
 			<td><?php echo $flag->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('flag/read/'.$flag->id_flag),'Read','class="text-navy"'); 
+				echo anchor(site_url('flag/read/'.$flag->id_flag),'Read','class="btn btn-xs btn-primary"'); 
 				echo ' | '; 
-				echo anchor(site_url('flag/update/'.$flag->id_flag),'Update','class="text-navy"'); 
+				echo anchor(site_url('flag/update/'.$flag->id_flag),'Update','class="btn btn-xs btn-warning"'); 
 				echo ' | '; 
-				echo anchor(site_url('flag/delete/'.$flag->id_flag),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('flag/delete/'.$flag->id_flag),'Delete','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

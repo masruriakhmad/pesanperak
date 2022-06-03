@@ -92,6 +92,7 @@ class Pengaduan_model extends CI_Model
     $this->db->join('desa','desa.id_desa=pengaduan.id_desa');
     $this->db->join('kecamatan','kecamatan.id_kecamatan=desa.id_kecamatan');
     $this->db->join('flag','flag.id_flag=pengaduan.id_flag');
+	$this->db->where('pengaduan.id_flag',$q);
     $this->db->like('id_pengaduan', $q);
 	$this->db->or_like('pengaduan.no_pengaduan', $q);
 	$this->db->or_like('pengaduan.nik_pelapor', $q);
@@ -107,7 +108,6 @@ class Pengaduan_model extends CI_Model
 	$this->db->or_like('pengaduan.tgl_monitoring', $q);
 	$this->db->or_like('pengaduan.note_monitoring', $q);
 	$this->db->or_like('pengaduan.tgl_input', $q);
-	$this->db->or_like('pengaduan.id_flag', $q);
 	$this->db->or_like('pengaduan.id_user', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
