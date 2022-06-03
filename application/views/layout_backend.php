@@ -140,7 +140,7 @@ foreach($data_menu as $menu){
 }
 */
 if($this->session->userdata('id_group') != 1){    
-$this->db->distinct('sy_menu.label');
+$this->db->group_by('user_access.id_menu');
 $this->db->order_by('order_no','asc');
 $this->db->join('sy_menu','sy_menu.id_menu=user_access.id_menu');
 $this->db->where('sy_menu.parent',0);
@@ -168,7 +168,8 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
 
                 <?php
                 //meng aray kan menu dari tabel sy menu yang merupakan parent menu atau nilai parent sesuai id menu 
-                if($this->session->userdata('id_group') != 1){
+                if($this->session->userdata('id_group') != 1){  
+                $this->db->group_by('user_access.id_menu');
                 $this->db->order_by('order_no','asc');
                 $this->db->join('sy_menu','sy_menu.id_menu=user_access.id_menu');
                 $this->db->where('sy_menu.parent',$vmenu0->id_menu);
@@ -345,6 +346,7 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
     </script>
 
     <script>
+
         //fungsi jika document telah diload semua
         $(document).ready(function(){
             //sembunyikan id_id_desa_pelapor
@@ -354,38 +356,52 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
              //sembunyikan id_desa_kejadian
             $("id_desa_kejadian").hide();
 
-            //fungsi load pelapor
+            //memanggil fungsi load pelapor
             loaddesa_pelapor();
-            //fungsi load korban
+            //memanggil fungsi load korban
             loaddesa_korban();
-            //fungsi load kejadian
+            //memanggil fungsi load kejadian
             loaddesa_kejadian();
         });
 
+        //fungsi dropdown chainned untuk meload daftar desa pelapor
         function loaddesa_pelapor(){
             
-
+            //
             $("#id_kecamatan_pelapor").change(function(){
 
+                //buat variable fungsi untuk mendapatkan value dari data kecamatan yang terpilih
                 var getkecamatan_pelapor=$("#id_kecamatan_pelapor").val();
 
+                //fungsi ajax chainned dropdown (format seperti json) menggunakan jquery getJSON
                 $.ajax({
+                    //type request POST
                     type :"POST",
+                    //data type berupa JSON
                     dataType:"JSON",
+                    //link url menuju controller Pengaduan dan method get desa
                     url: "<?= base_url();?>Pengaduan/get_desa",
+                    //data value dari data kecamatan yang terpilih dan akan dikirim ke get desa
                     data : {kecamatan : getkecamatan_pelapor },
 
+                    //jika fungsi sukses mengembalikan nilai balik berupa fungsi dibawah ini
                     success : function(data){
                         console.log(data);
 
+                        //buat variable awal elemen html bernilai null
                         var html ='';
+                        // buat variable counter
                         var i;
+                        //fungsi for untuk menampilkan elemen data desa pada combobox dengan membaca panjang data
                         for (i=0; i<data.length; i++){
 
+                            //tambah elemen html berdasar data hasil
                             html += '<option value="'+data[i].id_desa+'">'+data[i].nama_desa+'</option>'
                         }
 
+                        //masukkan hasil elemen html ke inner html pada  combobox id desa pelapor
                         $("#id_desa_pelapor").html(html);
+                        //tampilkan combobox desa pelapor
                         $("#id_desa_pelapor").show();
                     }
                 });

@@ -72,7 +72,7 @@ class Pengaduan extends CI_Controller
             'content' 			=> 'backend/pengaduan/pengaduan_list', 	//data content yang dipanggil
         );
 
-		
+		/*
 		//header('Content-Type: application/json');
                 echo json_encode(
                     array(
@@ -1517,9 +1517,8 @@ class Pengaduan extends CI_Controller
     	$id_kecamatan = $this->input->post('kecamatan');
 
     	$getdesa = $this->Desa_model->get_by_kecamatan($id_kecamatan);
-
-    echo json_encode($getdesa);
-
+		//cetak json
+    	echo json_encode($getdesa);
     }
 
 
