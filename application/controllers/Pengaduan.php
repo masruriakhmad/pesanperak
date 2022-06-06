@@ -68,9 +68,11 @@ class Pengaduan extends CI_Controller
             'pagination' 		=> $this->pagination->create_links(), 	// pembuatan link untuk pagination
             'total_rows' 		=> $config['total_rows'], 				//variabel untuk total baris
             'start' 			=> $start, 								//pendeklarasian variabel start
-			'session_desa'		=> $this->session->userdata('id_desa'), //data session user desa
-            'content' 			=> 'backend/pengaduan/pengaduan_list', 	//data content yang dipanggil
+			'session_desa'		=> $this->session->userdata('id_desa'),
+			'content' 			=> 'backend/pengaduan/pengaduan_list', 	//data content yang dipanggil
         );
+		
+        $this->load->view(layout(), $data);
 
 		/*
 		//header('Content-Type: application/json');
@@ -88,9 +90,14 @@ class Pengaduan extends CI_Controller
 			echo $dataset->no_pengaduan;
 			echo "<br>";
 		}
+		
+		$tgl_awal='2022-04-28';
+		$tgl_akhir='2022-05-10';
+		$id_flag=1;
+		$id_desa=173;
+		$coba = $this->Pengaduan_model->get_filter_by_tanggal($tgl_awal, $tgl_akhir, $id_flag, $id_desa);
+		var_dump($coba);
 		*/
-
-        $this->load->view(layout(), $data);
     }
 
     //fungsi lookup

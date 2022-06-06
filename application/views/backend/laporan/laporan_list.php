@@ -27,14 +27,14 @@
         
 
             <div class="col-md-10 text-right">
-                <form action="<?php echo site_url('pengaduan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('laporan/index'); ?>" class="form-inline" method="get">
                     Tanggal Awal :
                     <div class="input-group">
-                        <input type="date" id="tanggal" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="Tanggal Awal">
+                        <input type="date" id="tanggal_awal" class="form-control" name="tgl_awal" value="<?php echo $tgl_awal;?>" placeholder="Tanggal Awal">
                     </div>
                     Tanggal Akhir : 
                     <div class="input-group">
-                        <input type="date" id="tanggal" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="Tanggal Akhir">
+                        <input type="date" id="tanggal_akhir" class="form-control" name="tgl_akhir" value="<?php echo $tgl_akhir;?>" placeholder="Tanggal Akhir">
                     </div>
                    
                     <div class="input-group">
@@ -43,7 +43,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('pengaduan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('laporan'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>

@@ -13,7 +13,7 @@
         </div>
         <div class="ibox-content">
         <a href="<?php echo site_url('Laporan/') ?>" class="btn btn-default"><i class='fa fa-reply fa-2x'></i></a>
-        <a href="<?php echo site_url('laporan/laporan_print/'.$id_pengaduan)?>" class="btn btn-warning"><i class='fa fa-print fa-2x'></i></a>
+        <a href="<?php echo site_url('laporan/laporan_print/'.$id_pengaduan)?>" class="btn btn-warning" target="_blank"><i class='fa fa-print fa-2x'></i></a>
         <table class="table">
 	    <tr><td>No Pengaduan</td><td><b><?php echo $no_pengaduan; ?></b></td></tr>
 	    

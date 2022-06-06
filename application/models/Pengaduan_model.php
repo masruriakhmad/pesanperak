@@ -112,16 +112,15 @@ class Pengaduan_model extends CI_Model
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
-/*
+
     // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
+    function get_limit_data_and_search($limit, $start = 0, $q = NULL) {
     $this->db->join('pelapor','pelapor.nik_pelapor=pengaduan.nik_pelapor');
     $this->db->join('korban','korban.nik_korban=pengaduan.nik_korban');
     $this->db->join('desa','desa.id_desa=pengaduan.id_desa');
     $this->db->join('kecamatan','kecamatan.id_kecamatan=desa.id_kecamatan');
     $this->db->join('flag','flag.id_flag=pengaduan.id_flag');
     $this->db->order_by($this->id, $this->order);
-    
     $this->db->like('pengaduan.id_pengaduan', $q);
 	$this->db->or_like('pengaduan.no_pengaduan', $q);
 	$this->db->or_like('pengaduan.nik_pelapor', $q);
@@ -142,7 +141,20 @@ class Pengaduan_model extends CI_Model
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
-*/
+
+    // get filter by tanggal
+    function get_filter_by_tanggal($tgl_awal,$tgl_akhir, $id_flag, $id_desa) {
+        $sql="SELECT * FROM pengaduan 
+                JOIN pelapor ON pelapor.nik_pelapor=pengaduan.nik_pelapor
+                JOIN korban ON korban.nik_korban=pengaduan.nik_korban
+                JOIN desa ON desa.id_desa=pengaduan.id_desa
+                JOIN kecamatan ON kecamatan.id_kecamatan=desa.id_kecamatan
+                JOIN flag ON flag.id_flag=pengaduan.id_flag
+                WHERE LEFT(tgl_input,10) BETWEEN $tgl_awal AND $tgl_akhir
+                AND  pengaduan.id_flag=$id_flag
+                AND  pengaduan.id_desa=$id_desa";
+            return $this->db->query($sql)->result();
+        }
 
 //data laporan masuk,pending,ditindaklanjuti selesai, dimonitor grup by id kecamatan
 //data laporan masuk,pending,ditindaklanjuti selesai, dimonitor grup by id desa
@@ -240,35 +252,6 @@ class Pengaduan_model extends CI_Model
         return $this->db->count_all_results();
     }
 
-    // get data with limit and search tindaklanjut
-    function get_limit_data_tindaklanjut($limit, $start = 0, $q = NULL) {
-        $this->db->join('pelapor','pelapor.nik_pelapor=pengaduan.nik_pelapor');
-        $this->db->join('korban','korban.nik_korban=pengaduan.nik_korban');
-        $this->db->join('desa','desa.id_desa=pengaduan.id_desa');
-        $this->db->join('kecamatan','kecamatan.id_kecamatan=desa.id_kecamatan');
-        $this->db->join('flag','flag.id_flag=pengaduan.id_flag');
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('pengaduan.id_pengaduan', $q);
-    $this->db->or_like('pengaduan.no_pengaduan', $q);
-    $this->db->or_like('pengaduan.nik_pelapor', $q);
-    $this->db->or_like('pengaduan.nik_korban', $q);
-    $this->db->or_like('pengaduan.tempat_kejadian', $q);
-    $this->db->or_like('pengaduan.id_desa', $q);
-    $this->db->or_like('pengaduan.kronologi', $q);
-    $this->db->or_like('pengaduan.tgl_kejadian', $q);
-    $this->db->or_like('pengaduan.tgl_tindak_lanjut', $q);
-    $this->db->or_like('pengaduan.note_tindak_lanjut', $q);
-    $this->db->or_like('pengaduan.tgl_penyelesaian', $q);
-    $this->db->or_like('pengaduan.note_penyelesaian', $q);
-    $this->db->or_like('pengaduan.tgl_monitoring', $q);
-    $this->db->or_like('pengaduan.note_monitoring', $q);
-    $this->db->or_like('pengaduan.tgl_input', $q);
-    $this->db->or_like('pengaduan.id_flag', $q);
-    $this->db->or_like('pengaduan.id_user', $q);
-    $this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
-    }
-
     // insert data
     function insert($data)
     {
@@ -289,7 +272,7 @@ class Pengaduan_model extends CI_Model
         $this->db->delete($this->table);
     }
 
-        //fungsi untuk mendapatkan kode
+    //fungsi untuk mendapatkan kode
     function get_no_pengaduan(){
 
         date_default_timezone_set('Asia/Jakarta');

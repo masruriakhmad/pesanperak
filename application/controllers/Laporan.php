@@ -59,6 +59,8 @@ class Laporan extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
 			'session_desa'=> $this->session->userdata('id_desa'),
+			'tgl_awal'	 		=> set_value('tgl_awal'),
+			'tgl_akhir' 		=> set_value('tgl_akhir'),
             'f_ktp_pelapor'=> '1.jpg',
             'f_ktp_korban'=>'1.jpg',
             'content' => 'backend/laporan/laporan_list',
@@ -67,6 +69,87 @@ class Laporan extends CI_Controller
        //echo '<pre>';  print_r($pengaduan); echo '</pre>';
         $this->load->view(layout(), $data);
     }
+
+    //tampilan form yang akan dicetak
+    public function laporan_read($id)
+    {
+
+    	 $row 			= $this->Pengaduan_model->get_by_id($id);
+        
+        //ambil nik pelapor dan korban
+        $nik_pelapor 	= $row->nik_pelapor;
+        $nik_korban 	= $row->nik_korban;
+
+        //untuk data pelapor
+        $row_pelapor 	= $this->Pelapor_model->get_by_nik($nik_pelapor);
+        
+        //untuk data korban
+        $row_korban 	= $this->Korban_model->get_by_nik($nik_korban);
+        
+        if ($row) {
+
+            $data = array(
+		'id_pengaduan' => $row->id_pengaduan,
+		'no_pengaduan' => $row->no_pengaduan,
+
+		//pelapor
+		'nik_pelapor' => $row->nik_pelapor,
+		'nama_pelapor' => $row->nama_pelapor,
+		'id_agama_pelapor' => $row_pelapor->id_agama,
+		'nama_agama_pelapor' => $row_pelapor->nama_agama,
+		'id_desa_pelapor' => $row_pelapor->id_desa,
+		'nama_desa_pelapor' => $row_pelapor->nama_desa,
+		'alamat_pelapor' => $row->alamat_pelapor,
+		'no_hp_pelapor' => $row->no_hp_pelapor,
+		'id_kecamatan_pelapor' => $row_pelapor->id_kecamatan,
+		'nama_kecamatan_pelapor' => $row_pelapor->nama_kecamatan,
+
+		//korban
+		'nik_korban' => $row->nik_korban,
+		'nama_korban' => $row->nama_korban,
+		'id_agama_korban' => $row_korban->id_agama,
+		'nama_agama_korban' => $row_korban->nama_agama,
+		'id_desa_korban' => $row_korban->id_desa,
+		'nama_desa_korban' => $row_korban->nama_desa,
+		'alamat_korban' => $row->alamat_korban,
+		'no_hp_korban' => $row->no_hp_korban,
+		'id_kecamatan_korban' => $row_korban->id_kecamatan,
+		'nama_kecamatan_korban' => $row_korban->nama_kecamatan,
+		
+		//kejadian
+		'tempat_kejadian' => $row->tempat_kejadian,
+		'id_desa_kejadian' => $row->id_desa,
+		'nama_desa_kejadian' => $row->nama_desa,
+		'id_kecamatan_kejadian' => $row->id_kecamatan,
+		'nama_kecamatan_kejadian' => $row->nama_kecamatan,
+		'kronologi' => $row->kronologi,
+		'tgl_kejadian' => $row->tgl_kejadian,
+		
+		//tindaklanjut
+		'tgl_tindak_lanjut' => $row->tgl_tindak_lanjut,
+		'note_tindak_lanjut' => $row->note_tindak_lanjut,
+		'tgl_penyelesaian' => $row->tgl_penyelesaian,
+		'note_penyelesaian' => $row->note_penyelesaian,
+		'tgl_monitoring' => $row->tgl_monitoring,
+		'note_monitoring' => $row->note_monitoring,
+		
+		//keterangan
+		'tgl_input' => $row->tgl_input,
+		'nama_flag' => $row->nama_flag,
+		'id_user' => $row->id_user,
+
+		//content
+		'content' => 'backend/laporan/laporan_read',
+	    );
+
+            $this->load->view(layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('pengaduan/laporan_index'));
+        }
+
+    }
+
 
     //index laporan rekap kecamatan
     function rekap_kecamatan_index(){
