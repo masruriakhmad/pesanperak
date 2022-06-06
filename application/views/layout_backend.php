@@ -108,37 +108,12 @@ $CI->load->model('User_access_model');
                 </li>
                 
 
-                <?php
+<?php
 //MENU DARI TABEL sy_menu
 //meng aray kan menu dari tabel sy menu yang merupakan parent menu atau nilai parent 0
 //select menu.nama menu where id_menu
-
 //coding untuk filter menu berdasar group user
-/*
-$this->db->order_by('order_no','asc');
-$this->db->join('sy_menu','sy_menu.id_menu=user_access.id_menu');
-$this->db->where('sy_menu.parent',0);
-$this->db->where('user_access.is_allow',1);
-$this->db->where('user_access.id_group',$this->session->userdata('id_group'));
-$data_menu=$this->db->get('user_access')->result();
 
-foreach($data_menu as $menu){
-
-    echo $menu->label. "<br>";
-
-    $this->db->order_by('order_no','asc');
-    $this->db->join('sy_menu','sy_menu.id_menu=user_access.id_menu');
-    $this->db->where('sy_menu.parent',$menu->id_menu);
-    $this->db->where('user_access.is_allow',1);
-    $this->db->where('user_access.id_group',$this->session->userdata('id_group'));
-    $data_submenu=$this->db->get('user_access')->result();
-    
-    foreach($data_submenu as $submenu){
-        echo $submenu->label. "<br>";
-
-    }
-}
-*/
 if($this->session->userdata('id_group') != 1){    
 $this->db->group_by('user_access.id_menu');
 $this->db->order_by('order_no','asc');
@@ -192,8 +167,6 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
                             <?=$vmenu1->label?>
                          <!-- <span class="label label-primary pull-right">12</span> -->
                      </a></li>
-
-
                     </ul>
                 <?php }?>
 
@@ -231,14 +204,17 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
         </nav>
         </div>
 
-
+        <!--Ini adalah Tag Content-->
         <div class="wrapper wrapper-content">
         <div class="table-responsive" >
+            
         <?php $this->load->view($content);?>
+
+        </div>
         </div>
         </div>
 
-        </div>
+        <!--Ini Footer halaman-->
         <div class="footer">
             <div class="pull-right">
                 <?=data_app('RIGHT_FOOTER');?>
@@ -249,8 +225,8 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
         </div>
     </div>
 
-    <!-- Mainly scripts -->
 
+    <!-- Mainly scripts -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     
@@ -260,16 +236,12 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jeditable/jquery.jeditable.js"></script>
-
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/dataTables/datatables.min.js"></script>
     
     <!-- Morris -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/morris.js"></script>
 
-    <!-- Morris demo data
-    <script src="<?=base_url()?>assets/vendor/inspinia/js/demo/morris-demo.js"></script>
-    -->
     <!-- Flot -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.tooltip.min.js"></script>

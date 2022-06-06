@@ -3,62 +3,14 @@
                         <div class="ibox ">
                             <div class="ibox-title">
                                 <div class="ibox-tools">
-                                    <span class="label label-success float-right">Total</span>
+                                    <span class="label label-primary float-right">Total</span>
                                 </div>
                                 <h5>Laporan Pengaduan</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins"><?php echo $total_laporan?></h1>
-                                <div class="stat-percent font-bold text-success"><?php echo round($total_laporan/$total_laporan*100,1) ?>% </div>
+                                <div class="stat-percent font-bold text-navy"><?php echo round($total_laporan/$total_laporan*100,1) ?>% </div>
                                 <small>Total Laporan</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="ibox ">
-                            <div class="ibox-title">
-                                <div class="ibox-tools">
-                                    <span class="label label-success float-right">Laporan</span>
-                                </div>
-                                <h5>Pending</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?php echo $jumlah_pending?></h1>
-                                <div class="stat-percent font-bold text-success"><?php echo round($jumlah_pending/$total_laporan*100,1) ?>% </div>
-                                <small>Jumlah Laporan Pending</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="ibox ">
-                            <div class="ibox-title">
-                                <div class="ibox-tools">
-                                    <span class="label label-info float-right">Laporan</span>
-                                </div>
-                                <h5>Tertindaklanjuti</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?php echo $jumlah_tindaklanjut?></h1>
-                                <div class="stat-percent font-bold text-info"><?php echo round($jumlah_tindaklanjut/$total_laporan*100,1) ?>% </div>
-                                <small>Jumlah</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="ibox ">
-                            <div class="ibox-title">
-                                <div class="ibox-tools">
-                                    <span class="label label-primary float-right">Laporan</span>
-                                </div>
-                                <h5>Terselesaikan</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="no-margins"><?php echo $jumlah_selesai?></h1>
-                                <div class="stat-percent font-bold text-navy"><?php echo round($jumlah_selesai/$total_laporan*100,1) ?>% </div>
-                                <small>Jumlah</small>
                             </div>
                         </div>
                     </div>
@@ -69,11 +21,59 @@
                                 <div class="ibox-tools">
                                     <span class="label label-danger float-right">Laporan</span>
                                 </div>
+                                <h5>Pending</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins"><?php echo $jumlah_pending?></h1>
+                                <div class="stat-percent font-bold text-danger"><?php echo round($jumlah_pending/$total_laporan*100,1) ?>% </div>
+                                <small>Jumlah Laporan Pending</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-warning float-right">Laporan</span>
+                                </div>
+                                <h5>Tertindaklanjuti</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins"><?php echo $jumlah_tindaklanjut?></h1>
+                                <div class="stat-percent font-bold text-warning"><?php echo round($jumlah_tindaklanjut/$total_laporan*100,1) ?>% </div>
+                                <small>Jumlah</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-info float-right">Laporan</span>
+                                </div>
+                                <h5>Terselesaikan</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <h1 class="no-margins"><?php echo $jumlah_selesai?></h1>
+                                <div class="stat-percent font-bold text-info"><?php echo round($jumlah_selesai/$total_laporan*100,1) ?>% </div>
+                                <small>Jumlah</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <div class="ibox-tools">
+                                    <span class="label label-success float-right">Laporan</span>
+                                </div>
                                 <h5>Termonitoring</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins"><?php echo $jumlah_monitoring?></h1>
-                                <div class="stat-percent font-bold text-danger"><?php echo round($jumlah_monitoring/$total_laporan*100,1) ?>% </div>
+                                <div class="stat-percent font-bold text-success"><?php echo round($jumlah_monitoring/$total_laporan*100,1) ?>% </div>
                                 <small>Jumlah</small>
                             </div>
                         </div>
