@@ -27,14 +27,14 @@
         
 
             <div class="col-md-10 text-right">
-                <form action="<?php echo site_url('laporan/index'); ?>" class="form-inline" method="get">
-                    Tanggal Awal :
+                <form action="<?php echo site_url('laporan/filter'); ?>" class="form-inline" method="get">
+                    Range
                     <div class="input-group">
-                        <input type="date" id="tanggal_awal" class="form-control" name="tgl_awal" value="<?php echo $tgl_awal;?>" placeholder="Tanggal Awal">
+                        <input type="text" id="tanggal_awal" class="datepicker" name="tgl_awal" value="" placeholder="dd-mm-yyyy">
                     </div>
-                    Tanggal Akhir : 
+                    s.d. 
                     <div class="input-group">
-                        <input type="date" id="tanggal_akhir" class="form-control" name="tgl_akhir" value="<?php echo $tgl_akhir;?>" placeholder="Tanggal Akhir">
+                        <input type="text" id="tanggal_akhir" class="datepicker" name="tgl_akhir" value="" placeholder="dd-mm-yyyy">
                     </div>
                    
                     <div class="input-group">

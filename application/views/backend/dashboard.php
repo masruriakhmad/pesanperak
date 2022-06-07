@@ -9,7 +9,6 @@
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins"><?php echo $total_laporan?></h1>
-                                <div class="stat-percent font-bold text-navy"><?php echo round($total_laporan/$total_laporan*100,1) ?>% </div>
                                 <small>Total Laporan</small>
                             </div>
                         </div>

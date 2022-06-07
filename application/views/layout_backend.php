@@ -106,7 +106,6 @@ $CI->load->model('User_access_model');
                         ER+
                     </div>
                 </li>
-                
 
 <?php
 //MENU DARI TABEL sy_menu
@@ -309,13 +308,26 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
         //     radioClass: 'iradio_minimal-grey'
         // });
         // $('input.timepicker').timepicker({ timeFormat: 'h:mm'});
-        $('input.datepicker').datepicker({ dateFormat: 'yy/mm/dd'});
+        $('input.datepicker').datepicker({ format: 'dd-mm-yyyy',autoclose: true});
         // $('input.datepicker-ym').datepicker({ dateFormat: 'mm/yy'});
-
-
+        
         });
 
     </script>
+    -->
+    <!--
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tanggal_awal').datepicker({
+                 //merubah format tanggal datepicker ke dd-mm-yyyy
+                    format: "dd-mm-yyyy",
+                    //aktifkan kode dibawah untuk melihat perbedaanya, disable baris perintah diatasa
+                    //format: "dd-mm-yyyy",
+                    autoclose: true
+                });
+            });
+    </script>
+        -->
 
     <script>
 

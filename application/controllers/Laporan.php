@@ -70,6 +70,41 @@ class Laporan extends CI_Controller
         $this->load->view(layout(), $data);
     }
 
+    //fungsi lookup
+    public function lookup()
+        {
+            $q 		= urldecode($this->input->get('q', TRUE));
+            $start 	= intval($this->input->get('start'));
+            $idhtml = $this->input->get('idhtml');
+            
+            if ($q <> '') {
+                $config['base_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+                $config['first_url'] 	= base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            } else {
+                $config['base_url'] 	= base_url() . 'pengaduan/index.html';
+                $config['first_url'] 	= base_url() . 'pengaduan/index.html';
+            }
+    
+            $config['per_page'] 		= 10;
+            $config['page_query_string']= TRUE;
+            $config['total_rows'] = $this->Pengaduan_model->total_rows($q);
+            $pengaduan = $this->Pengaduan_model->get_limit_data($config['per_page'], $start, $q);
+    
+    
+            $data = array(
+                'pengaduan_data' 	=> $pengaduan,
+                'idhtml' 			=> $idhtml,
+                'q' 				=> $q,
+                'total_rows' 		=> $config['total_rows'],
+                'start' 			=> $start,
+                'content' 			=> 'backend/pengaduan/pengaduan_lookup',
+            );
+            ob_start();
+            $this->load->view($data['content'], $data);
+            return ob_get_contents();
+            ob_end_clean();
+        }
+
     //tampilan form yang akan dicetak
     public function laporan_read($id)
     {
