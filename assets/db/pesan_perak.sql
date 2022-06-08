@@ -491,7 +491,7 @@ CREATE TABLE `master_access` (
   `created_by` int(11) DEFAULT NULL,
   `id_menu` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `master_access` */
 
@@ -508,7 +508,12 @@ insert  into `master_access`(`id`,`nm_access`,`note`,`created_at`,`created_by`,`
 (30,'User','Akses ke menu User','2022-05-23 09:50:22',6,14),
 (31,'Group User','Akses ke menu Group User','2022-05-23 09:50:52',6,15),
 (32,'Master Akses','Akses ke menu master Akses','2022-05-23 09:51:10',6,17),
-(33,'User Akses','akses ke menu User Akses','2022-05-23 09:51:36',6,16);
+(33,'User Akses','akses ke menu User Akses','2022-05-23 09:51:36',6,16),
+(34,'Action Tindaklanjut','Akses ke tombol aksi menu tindak lanjut','2022-06-08 13:33:49',6,25),
+(35,'Action Selesai','AKSES KE TOMBOL AKSI MENU SELESAI','2022-06-08 13:34:53',6,32),
+(36,'Action Penyelesaian','AKSES KE TOMBOL AKSI MENU PEYELESAIAN','2022-06-08 13:35:13',6,28),
+(37,'Action Monitoring','AKSES KE TOMBOL AKSI MENU MONITORING','2022-06-08 13:35:39',6,29),
+(38,'Selesai','AKSES KE MENU SELESAI','2022-06-08 13:39:31',6,32);
 
 /*Table structure for table `pelapor` */
 
@@ -696,7 +701,7 @@ CREATE TABLE `user_access` (
   `note` text,
   `id_menu` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `user_access` */
 
@@ -721,7 +726,28 @@ insert  into `user_access`(`id`,`id_group`,`kd_access`,`nm_access`,`is_allow`,`n
 (94,3,'25',NULL,1,NULL,20),
 (95,4,'26',NULL,1,NULL,25),
 (96,4,'30',NULL,1,NULL,14),
-(97,4,'22',NULL,1,NULL,13);
+(97,4,'22',NULL,1,NULL,13),
+(98,1,'32',NULL,1,NULL,17),
+(99,1,'31',NULL,1,NULL,15),
+(100,1,'30',NULL,1,NULL,14),
+(101,1,'28',NULL,1,NULL,29),
+(102,1,'27',NULL,1,NULL,28),
+(103,1,'26',NULL,1,NULL,25),
+(104,1,'25',NULL,1,NULL,20),
+(105,1,'33',NULL,1,NULL,16),
+(106,1,'34',NULL,1,NULL,25),
+(107,4,'34',NULL,1,NULL,25),
+(108,1,'35',NULL,1,NULL,32),
+(109,1,'36',NULL,1,NULL,28),
+(110,1,'37',NULL,1,NULL,29),
+(111,4,'35',NULL,1,NULL,32),
+(112,4,'36',NULL,1,NULL,28),
+(113,4,'37',NULL,1,NULL,29),
+(114,3,'26',NULL,1,NULL,25),
+(115,3,'27',NULL,1,NULL,28),
+(116,3,'28',NULL,1,NULL,29),
+(117,4,'38',NULL,1,NULL,32),
+(118,1,'38',NULL,1,NULL,32);
 
 /*Table structure for table `user_group` */
 

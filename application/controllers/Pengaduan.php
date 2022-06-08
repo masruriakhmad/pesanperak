@@ -74,8 +74,8 @@ class Pengaduan extends CI_Controller
 		
         $this->load->view(layout(), $data);
 
-		/*
-		//header('Content-Type: application/json');
+	/*
+		header('Content-Type: application/json');
                 echo json_encode(
                     array(
                         'success' => true,

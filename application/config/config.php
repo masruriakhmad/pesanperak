@@ -29,6 +29,9 @@ $config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERV
 // $config['base_url']= "http://localhost:7777/e-risalah";
 // $config['base_url']= "http://192.168.0.29:7777/e-risalah";
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File
