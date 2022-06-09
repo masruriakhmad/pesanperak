@@ -43,11 +43,15 @@
         <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
 
           <div class="form-group">
-            <label for="nama"></label>
-            <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama">
-            <small id="Nama yag jelas" class="text-muted">Nama Kamu</small>
+            <label for="nomor wa"></label>
+            <input type="text" name="nowa" id="nowa" class="form-control" placeholder="Nomor Tujuan">
+            <small id="Nama yag jelas" class="text-muted">Nomor Tujuan</small>
           </div>
-
+          <div class="form-group">
+            <label for="chat"></label>
+            <input type="textarea" name="chat" id="chat" class="form-control" placeholder="Message">
+            <small id="Nama yag jelas" class="text-muted">Message</small>
+          </div>
           
           <div class="form-group">
             <label for="upload">Upload file</label>

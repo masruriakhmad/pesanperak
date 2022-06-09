@@ -16,12 +16,26 @@ class Coba extends CI_Controller {
       
         $data=array(
         'button' => 'Create',
-        'action' => site_url('coba/cobaupload'),
+        'action' => site_url('coba/send'),
         );
 
-        $q=aku/danaku;
-        urlencode($q);
         $this->load->view('vcoba', $data);
+        
+    }
+
+    public function send(){
+
+        $nowa = $this->input->post('nowa');
+        $chat = $this->input->post('chat');
+        
+        if(api_sendwa($nowa, $chat)){
+
+            echo 'Pesan telah dikiirm';
+        }
+        else{
+            echo 'Gagal Kirim';
+        }
+
     }
 
     function cobaupload(){
