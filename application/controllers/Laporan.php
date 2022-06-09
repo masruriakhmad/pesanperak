@@ -105,6 +105,57 @@ class Laporan extends CI_Controller
             ob_end_clean();
         }
 
+        //fungsi filter laporan
+        public function filter(){
+            $q = urldecode($this->input->get('q', TRUE));
+            $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pengaduan/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'pengaduan/index.html';
+            $config['first_url'] = base_url() . 'pengaduan/index.html';
+        }
+            $user_desa= $this->session->userdata('id_desa');
+            $config['per_page'] = 10;
+            $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Pengaduan_model->total_rows($q);
+		
+		$flag=1;
+        if($user_desa!=NULL){
+
+			$pengaduan = $this->Pengaduan_model->get_limit_data_where($config['per_page'], $start, $q, $user_desa,$flag);
+			
+        }else{
+
+			$pengaduan = $this->Pengaduan_model->get_limit_data($config['per_page'], $start, $q, $flag);
+
+        }
+        
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'pengaduan_data' => $pengaduan,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+			'session_desa'=> $this->session->userdata('id_desa'),
+			'tgl_awal'	 		=> set_value('tgl_awal'),
+			'tgl_akhir' 		=> set_value('tgl_akhir'),
+            'f_ktp_pelapor'=> '1.jpg',
+            'f_ktp_korban'=>'1.jpg',
+            'content' => 'backend/laporan/laporan_list',
+        );
+		
+       //echo '<pre>';  print_r($pengaduan); echo '</pre>';
+        $this->load->view(layout(), $data);
+            
+        }
+
     //tampilan form yang akan dicetak
     public function laporan_read($id)
     {

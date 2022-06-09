@@ -84,13 +84,15 @@
 			<td><?php echo $pengaduan->tgl_kejadian ?></td>
 			<td><?php echo $pengaduan->nama_flag ?></td>
 			<td style="text-align:center" width="200px">
-				<?php  
-                echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'Read','class="btn btn-xs btn-primary"'); 
+				<?php
+                echo "&nbsp";  
+                echo anchor(site_url('pengaduan/read/'.$pengaduan->id_pengaduan),'<i class="fa fa-list fa-border-padding" aria-hidden="true" data-toggle="tooltip" title="Detail"></i>','class="btn btn-xs btn-primary"'); 
+            
             if(is_allow('Pengaduan')){	
-                echo ' | '; 
-				echo  anchor(site_url('pengaduan/update/'.$pengaduan->id_pengaduan),'Update','class="btn btn-xs btn-warning"'); 
-				echo ' | '; 
-				echo anchor(site_url('pengaduan/delete/'.$pengaduan->id_pengaduan),'Delete','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+                echo "&nbsp";
+				echo  anchor(site_url('pengaduan/update/'.$pengaduan->id_pengaduan),'<i class="fa fa-pen-to-square fa-border-padding" aria-hidden="true" data-toggle="tooltip" title="Edit"></i>','class="btn btn-xs btn-warning"'); 
+                echo "&nbsp";
+				echo anchor(site_url('pengaduan/delete/'.$pengaduan->id_pengaduan),'<i class="fa fa-trash-can fa-border-padding" aria-hidden="true" data-toggle="tooltip" title="Hapus"></i>','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
             } 
                 ?>
 			</td>

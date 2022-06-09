@@ -28,11 +28,16 @@
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>/assets/vendor/radiocheck/radioonoff.css"/>
+    
     <!-- <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet"> -->
-<script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
-<script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-<script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>    
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/1f5aa34486.js" crossorigin="anonymous"></script>
+    
+    <script>
                 var loadFile = function (event) {
                 var output = document.getElementById('prev1');
                 
@@ -281,6 +286,8 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
 
     <!--Data Tables-->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/DataTables/datatables.min.js"></script>
+
+
 
   
 

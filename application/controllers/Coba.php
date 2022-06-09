@@ -19,6 +19,8 @@ class Coba extends CI_Controller {
         'action' => site_url('coba/cobaupload'),
         );
 
+        $q=aku/danaku;
+        urlencode($q);
         $this->load->view('vcoba', $data);
     }
 
