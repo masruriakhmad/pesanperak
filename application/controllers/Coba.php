@@ -7,6 +7,7 @@ class Coba extends CI_Controller {
         $this->load->model('Users_model');
         $this->load->model('Sy_menu_model');
         $this->load->model('Pengaduan_model');
+        $this->load->model('Wa_model');
         $this->load->helper('sf');
         // is_logged();
     }
@@ -19,16 +20,69 @@ class Coba extends CI_Controller {
         'action' => site_url('coba/send'),
         );
 
-        $this->load->view('vcoba', $data);
+        $database = $this->Wa_model->get_all();
+
+        var_dump($database);
+
+        $data1 = [
+            "data" => [
+                [
+                    "phone"     => '085643538783',
+                    "message"   => 'chat 1',
+                    "secret"    => false,
+                    "retry"     => false,
+                    "isGroup"   => false
+                ],
+                [
+                    "phone"     => '085643538783',
+                    "message"   => 'chat 1',
+                    "secret"    => false,
+                    "retry"     => false,
+                    "isGroup"   => false
+                ],
+                [
+                    "phone"     => '085643538783',
+                    "message"   => 'chat 1',
+                    "secret"    => false,
+                    "retry"     => false,
+                    "isGroup"   => false
+                ]
+            ]
+        ];
+        echo "<pre>";
+        var_dump($data1);
+
+        //$this->load->view('vcoba', $data);
         
     }
 
     public function send(){
 
-        $nowa = $this->input->post('nowa');
-        $chat = $this->input->post('chat');
+        $nowa = '085643538783';//$this->input->post('nowa');
+        $chat = 'pesan';//$this->input->post('chat');
         
         if(api_sendwa($nowa, $chat)){
+
+            echo 'Pesan Whatsapp telah dikiirm';
+
+        }
+        else{
+            echo 'Gagal Kirim Pesan Whatsapp';
+        }
+
+    }
+
+    public function multiple_send(){
+
+       // $nowa = array('085643538783','088805050000');
+        //$chat = array('pesan ke satu', 'pesan kedua');
+
+
+        
+        //$payload=array($data);
+        
+        
+        if(api_sendwa_multiple($data)){
 
             echo 'Pesan Whatsapp telah dikiirm';
 
