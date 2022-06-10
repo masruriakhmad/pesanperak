@@ -30,10 +30,11 @@ class Coba extends CI_Controller {
         
         if(api_sendwa($nowa, $chat)){
 
-            echo 'Pesan telah dikiirm';
+            echo 'Pesan Whatsapp telah dikiirm';
+
         }
         else{
-            echo 'Gagal Kirim';
+            echo 'Gagal Kirim Pesan Whatsapp';
         }
 
     }
@@ -45,7 +46,7 @@ class Coba extends CI_Controller {
             {
             
         
-                $nama_gambar    = 'Dataupload';
+            $nama_gambar    = 'Dataupload';
             $lokasi_gambar 	= 'uploads/ktp/';
 			$tipe_gambar 	= 'jpg|jpeg|png';
 			$ukuran_gambar 	= 2048;

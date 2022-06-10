@@ -326,10 +326,10 @@ function api_sendwa($nowa,$chat){
     $curl = curl_init();
     $token = "O6UT8a7LZ5mug1gEGcRgKP1DxrGBQo2t9wMqT31GgMdtdU9xwFQk42k2m615hkC0";
     $data = [
-        'phone' => $nowa,
-        'message' => $chat,
-        'secret' => false, // or true
-        'priority' => false, // or true
+        'phone'     => $nowa,
+        'message'   => $chat,
+        'secret'    => false, // or true
+        'priority'  => false, // or true
     ];
     
     curl_setopt($curl, CURLOPT_HTTPHEADER,
