@@ -327,10 +327,10 @@ class Pengaduan extends CI_Controller
 			$lokasi_gambar 	= '/uploads/ktp/';
 			$tipe_gambar 	= 'jpg|jpeg|png';
 			$ukuran_gambar 	= 2048;
-			$nama_file_ktp_pelapor = sf_upload($data['nik_pelapor'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
-			$nama_file_ktp_korban = sf_upload($data['nik_korban'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_korban");
+			///$nama_file_ktp_pelapor = sf_upload($this->input->post('nik_pelapor',TRUE), $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
+			$nama_file_ktp_korban = sf_upload($this->input->post('nik_korban',TRUE), $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_korban");
 			
-			$data_pelapor=array(
+				$data_pelapor=array(
 			 'nik_pelapor' 	=> $this->input->post('nik_pelapor',TRUE),
 			 'nama_pelapor' 	=> $this->input->post('nama_pelapor',TRUE),
 			 'id_agama' 		=> $this->input->post('id_agama_pelapor',TRUE),
@@ -359,7 +359,10 @@ class Pengaduan extends CI_Controller
             $this->Korban_model->insert($data_korban);
             $this->Pengaduan_model->insert($data);
             $this->session->set_flashdata('message', 'Data Pengaduan Sukses Tersimpan');
-            redirect(site_url('pengaduan'));	
+            echo $nama_file_ktp_pelapor;
+			echo $nama_file_ktp_korban;
+			
+			//redirect(site_url('pengaduan'));	
 
             }
         }

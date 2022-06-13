@@ -286,11 +286,7 @@ foreach ($data_menu as $kmenu0 => $vmenu0)
 
     <!--Data Tables-->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/DataTables/datatables.min.js"></script>
-
-
-
-  
-
+    
 <!--Data Graph-->
   <script>
          Morris.Line({
