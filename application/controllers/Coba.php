@@ -17,7 +17,7 @@ class Coba extends CI_Controller {
       
         $data=array(
         'button' => 'Create',
-        'action' => site_url('coba/send'),
+        'action' => site_url('coba/cobaupload'),
         );
 
         $database = $this->Wa_model->get_all();
@@ -52,7 +52,7 @@ class Coba extends CI_Controller {
         echo "<pre>";
         var_dump($data1);
 
-        //$this->load->view('vcoba', $data);
+        $this->load->view('vcoba', $data);
         
     }
 

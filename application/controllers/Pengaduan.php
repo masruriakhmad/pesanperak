@@ -249,9 +249,9 @@ class Pengaduan extends CI_Controller
 	    'note_penyelesaian' 	=> set_value('note_penyelesaian'),
 	    'tgl_monitoring' 		=> set_value('tgl_monitoring'),
 	    'note_monitoring' 		=> set_value('note_monitoring'),
-	    'tgl_input' => set_value('tgl_input'),
-	    'id_flag' => set_value('id_flag'),
-	    'id_user' => set_value('id_user'),
+	    'tgl_input' 			=> set_value('tgl_input'),
+	    'id_flag' 				=> set_value('id_flag'),
+	    'id_user' 				=> set_value('id_user'),
 
 	    //pelapor
 	    'id_pelapor' => set_value('id_pelapor'),
@@ -299,32 +299,13 @@ class Pengaduan extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->create();
-        } else {
-
-        	$data_pelapor=array(
-       	'nik_pelapor' 	=> $this->input->post('nik_pelapor',TRUE),
-	    'nama_pelapor' 	=> $this->input->post('nama_pelapor',TRUE),
-	    'id_agama' 		=> $this->input->post('id_agama_pelapor',TRUE),
-	    'alamat_pelapor'=> $this->input->post('alamat_pelapor',TRUE),
-	    'id_desa' 		=> $this->input->post('id_desa_pelapor',TRUE),
-	    'no_hp_pelapor' => $this->input->post('no_hp_pelapor',TRUE),
-        	);
-
-
-            $data_korban=array(
-        'nik_korban' => $this->input->post('nik_korban',TRUE),
-	    'nama_korban' => $this->input->post('nama_korban',TRUE),
-	    'id_agama' => $this->input->post('id_agama_korban',TRUE),
-	    'alamat_korban' => $this->input->post('alamat_korban',TRUE),
-	    'id_desa' => $this->input->post('id_desa_korban',TRUE),
-	    'no_hp_korban' => $this->input->post('no_hp_korban',TRUE),
-            );
+        } else {        	
 
             $data = array(
-		'no_pengaduan' => $this->input->post('no_pengaduan',TRUE),
-		'tempat_kejadian' => $this->input->post('tempat_kejadian',TRUE),
-        'nik_pelapor' => $this->input->post('nik_pelapor',TRUE),
-        'nik_korban' => $this->input->post('nik_korban',TRUE),
+		'no_pengaduan' 		=> $this->input->post('no_pengaduan',TRUE),
+		'tempat_kejadian' 	=> $this->input->post('tempat_kejadian',TRUE),
+        'nik_pelapor' 		=> $this->input->post('nik_pelapor',TRUE),
+        'nik_korban' =>$this->input->post('nik_korban',TRUE),
 		'id_desa' => $this->session->userdata('id_desa'),
 		'kronologi' => $this->input->post('kronologi',TRUE),
 		'tgl_kejadian' => $this->input->post('tgl_kejadian',TRUE),
@@ -346,9 +327,35 @@ class Pengaduan extends CI_Controller
 			$lokasi_gambar 	= '/uploads/ktp/';
 			$tipe_gambar 	= 'jpg|jpeg|png';
 			$ukuran_gambar 	= 2048;
-			sf_upload($data['nik_pelapor'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
-			sf_upload($data['nik_korban'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
-           	$this->Pelapor_model->insert($data_pelapor);
+			$nama_file_ktp_pelapor = sf_upload($data['nik_pelapor'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_pelapor");
+			$nama_file_ktp_korban = sf_upload($data['nik_korban'], $lokasi_gambar, $tipe_gambar, $ukuran_gambar, "f_ktp_korban");
+			
+			$data_pelapor=array(
+			 'nik_pelapor' 	=> $this->input->post('nik_pelapor',TRUE),
+			 'nama_pelapor' 	=> $this->input->post('nama_pelapor',TRUE),
+			 'id_agama' 		=> $this->input->post('id_agama_pelapor',TRUE),
+			 'alamat_pelapor'	=> $this->input->post('alamat_pelapor',TRUE),
+			 'id_desa' 			=> $this->input->post('id_desa_pelapor',TRUE),
+			 'no_hp_pelapor' 	=> $this->input->post('no_hp_pelapor',TRUE),
+			 'foto_ktp' 		=> $nama_file_ktp_pelapor,
+			 'foto_ybs' 		=> '',
+			 'is_active'		=> 1,
+				 );
+	 
+	 
+				 $data_korban=array(
+			 'nik_korban' 		=> $this->input->post('nik_korban',TRUE),
+			 'nama_korban' 		=> $this->input->post('nama_korban',TRUE),
+			 'id_agama' 		=> $this->input->post('id_agama_korban',TRUE),
+			 'alamat_korban' 	=> $this->input->post('alamat_korban',TRUE),
+			 'id_desa' 			=> $this->input->post('id_desa_korban',TRUE),
+			 'no_hp_korban' 	=> $this->input->post('no_hp_korban',TRUE),
+			 'foto_ktp' 		=> $nama_file_ktp_korban,
+			 'foto_ybs' 		=> '',
+			 'is_active'		=> 1,
+				 );
+
+			$this->Pelapor_model->insert($data_pelapor);
             $this->Korban_model->insert($data_korban);
             $this->Pengaduan_model->insert($data);
             $this->session->set_flashdata('message', 'Data Pengaduan Sukses Tersimpan');

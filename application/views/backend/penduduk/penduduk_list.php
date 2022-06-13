@@ -54,6 +54,14 @@
 		<th class="text-center">Alamat</th>
 		<th class="text-center">No Hp</th>
 		<th class="text-center">Id Desa</th>
+		<th class="text-center">Pelapor</th>
+		<th class="text-center">Korban</th>
+		<th class="text-center">Pelaku</th>
+		<th class="text-center">Foto Ktp</th>
+		<th class="text-center">Foto Ybs</th>
+		<th class="text-center">Create By</th>
+		<th class="text-center">Create At</th>
+		<th class="text-center">Is Active</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -69,13 +77,21 @@
 			<td><?php echo $penduduk->alamat ?></td>
 			<td><?php echo $penduduk->no_hp ?></td>
 			<td><?php echo $penduduk->id_desa ?></td>
+			<td><?php echo $penduduk->pelapor ?></td>
+			<td><?php echo $penduduk->korban ?></td>
+			<td><?php echo $penduduk->pelaku ?></td>
+			<td><?php echo $penduduk->foto_ktp ?></td>
+			<td><?php echo $penduduk->foto_ybs ?></td>
+			<td><?php echo $penduduk->create_by ?></td>
+			<td><?php echo $penduduk->create_at ?></td>
+			<td><?php echo $penduduk->is_active ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('penduduk/read/'.$penduduk->id_penduduk),'Read','class="text-navy"'); 
+				echo anchor(site_url('penduduk/read/'.$penduduk->id_penduduk),'Read','class="btn btn-xs btn-primary"'); 
 				echo ' | '; 
-				echo anchor(site_url('penduduk/update/'.$penduduk->id_penduduk),'Update','class="text-navy"'); 
+				echo anchor(site_url('penduduk/update/'.$penduduk->id_penduduk),'Update','class="btn btn-xs btn-warning"'); 
 				echo ' | '; 
-				echo anchor(site_url('penduduk/delete/'.$penduduk->id_penduduk),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('penduduk/delete/'.$penduduk->id_penduduk),'Delete','class="btn btn-xs btn-danger" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

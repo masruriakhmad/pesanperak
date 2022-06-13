@@ -452,10 +452,8 @@ class Laporan extends CI_Controller
 
          //file ktp pelapor dan korban ambil dengan parameter nama file
          $ekstensi='.jpg';
-         $kodekorban='1';
-         
-         $f_ktp_pelapor = $no_pengaduan.$ekstensi;
-         $f_ktp_korban = $no_pengaduan.$kodekorban.$ekstensi;
+         $f_ktp_pelapor = $nik_pelapor.$ekstensi;
+         $f_ktp_korban = $nik_korban.$ekstensi;
          
          if ($row) {
  

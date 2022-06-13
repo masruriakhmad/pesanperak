@@ -45,7 +45,15 @@
 		<th class="text-center">Id Agama</th>
 		<th class="text-center">Alamat</th>
 		<th class="text-center">No Hp</th>
-		<th class="text-center">Id Desa</th></tr>
+		<th class="text-center">Id Desa</th>
+		<th class="text-center">Pelapor</th>
+		<th class="text-center">Korban</th>
+		<th class="text-center">Pelaku</th>
+		<th class="text-center">Foto Ktp</th>
+		<th class="text-center">Foto Ybs</th>
+		<th class="text-center">Create By</th>
+		<th class="text-center">Create At</th>
+		<th class="text-center">Is Active</th></tr>
             </thead>
 			<tbody><?php
             foreach ($penduduk_data as $penduduk)
@@ -59,6 +67,14 @@
 			<td><?php echo $penduduk->alamat ?></td>
 			<td><?php echo $penduduk->no_hp ?></td>
 			<td><?php echo $penduduk->id_desa ?></td>
+			<td><?php echo $penduduk->pelapor ?></td>
+			<td><?php echo $penduduk->korban ?></td>
+			<td><?php echo $penduduk->pelaku ?></td>
+			<td><?php echo $penduduk->foto_ktp ?></td>
+			<td><?php echo $penduduk->foto_ybs ?></td>
+			<td><?php echo $penduduk->create_by ?></td>
+			<td><?php echo $penduduk->create_at ?></td>
+			<td><?php echo $penduduk->is_active ?></td>
 		</tr>
                 
                 <?php

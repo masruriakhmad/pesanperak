@@ -89,7 +89,15 @@ class Penduduk extends CI_Controller
 		'id_agama' => $row->id_agama,
 		'alamat' => $row->alamat,
 		'no_hp' => $row->no_hp,
-		'id_desa' => $row->id_desa,'content' => 'backend/penduduk/penduduk_read',
+		'id_desa' => $row->id_desa,
+		'pelapor' => $row->pelapor,
+		'korban' => $row->korban,
+		'pelaku' => $row->pelaku,
+		'foto_ktp' => $row->foto_ktp,
+		'foto_ybs' => $row->foto_ybs,
+		'create_by' => $row->create_by,
+		'create_at' => $row->create_at,
+		'is_active' => $row->is_active,'content' => 'backend/penduduk/penduduk_read',
 	    );
             $this->load->view(
             layout(), $data);
@@ -111,6 +119,14 @@ class Penduduk extends CI_Controller
 	    'alamat' => set_value('alamat'),
 	    'no_hp' => set_value('no_hp'),
 	    'id_desa' => set_value('id_desa'),
+	    'pelapor' => set_value('pelapor'),
+	    'korban' => set_value('korban'),
+	    'pelaku' => set_value('pelaku'),
+	    'foto_ktp' => set_value('foto_ktp'),
+	    'foto_ybs' => set_value('foto_ybs'),
+	    'create_by' => set_value('create_by'),
+	    'create_at' => set_value('create_at'),
+	    'is_active' => set_value('is_active'),
 	    'content' => 'backend/penduduk/penduduk_form',
 	);
         $this->load->view(layout(), $data);
@@ -130,6 +146,14 @@ class Penduduk extends CI_Controller
 		'alamat' => $this->input->post('alamat',TRUE),
 		'no_hp' => $this->input->post('no_hp',TRUE),
 		'id_desa' => $this->input->post('id_desa',TRUE),
+		'pelapor' => $this->input->post('pelapor',TRUE),
+		'korban' => $this->input->post('korban',TRUE),
+		'pelaku' => $this->input->post('pelaku',TRUE),
+		'foto_ktp' => $this->input->post('foto_ktp',TRUE),
+		'foto_ybs' => $this->input->post('foto_ybs',TRUE),
+		'create_by' => $this->input->post('create_by',TRUE),
+		'create_at' => $this->input->post('create_at',TRUE),
+		'is_active' => $this->input->post('is_active',TRUE),
 	    );
 
             $this->Penduduk_model->insert($data);
@@ -153,6 +177,14 @@ class Penduduk extends CI_Controller
 		'alamat' => set_value('alamat', $row->alamat),
 		'no_hp' => set_value('no_hp', $row->no_hp),
 		'id_desa' => set_value('id_desa', $row->id_desa),
+		'pelapor' => set_value('pelapor', $row->pelapor),
+		'korban' => set_value('korban', $row->korban),
+		'pelaku' => set_value('pelaku', $row->pelaku),
+		'foto_ktp' => set_value('foto_ktp', $row->foto_ktp),
+		'foto_ybs' => set_value('foto_ybs', $row->foto_ybs),
+		'create_by' => set_value('create_by', $row->create_by),
+		'create_at' => set_value('create_at', $row->create_at),
+		'is_active' => set_value('is_active', $row->is_active),
 	    'content' => 'backend/penduduk/penduduk_form',
 	    );
             $this->load->view(layout(), $data);
@@ -176,6 +208,14 @@ class Penduduk extends CI_Controller
 		'alamat' => $this->input->post('alamat',TRUE),
 		'no_hp' => $this->input->post('no_hp',TRUE),
 		'id_desa' => $this->input->post('id_desa',TRUE),
+		'pelapor' => $this->input->post('pelapor',TRUE),
+		'korban' => $this->input->post('korban',TRUE),
+		'pelaku' => $this->input->post('pelaku',TRUE),
+		'foto_ktp' => $this->input->post('foto_ktp',TRUE),
+		'foto_ybs' => $this->input->post('foto_ybs',TRUE),
+		'create_by' => $this->input->post('create_by',TRUE),
+		'create_at' => $this->input->post('create_at',TRUE),
+		'is_active' => $this->input->post('is_active',TRUE),
 	    );
 
             $this->Penduduk_model->update($this->input->post('id_penduduk', TRUE), $data);
@@ -206,6 +246,14 @@ class Penduduk extends CI_Controller
 	$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
 	$this->form_validation->set_rules('no_hp', 'no hp', 'trim|required');
 	$this->form_validation->set_rules('id_desa', 'id desa', 'trim|required');
+	$this->form_validation->set_rules('pelapor', 'pelapor', 'trim|required');
+	$this->form_validation->set_rules('korban', 'korban', 'trim|required');
+	$this->form_validation->set_rules('pelaku', 'pelaku', 'trim|required');
+	$this->form_validation->set_rules('foto_ktp', 'foto ktp', 'trim|required');
+	$this->form_validation->set_rules('foto_ybs', 'foto ybs', 'trim|required');
+	$this->form_validation->set_rules('create_by', 'create by', 'trim|required');
+	$this->form_validation->set_rules('create_at', 'create at', 'trim|required');
+	$this->form_validation->set_rules('is_active', 'is active', 'trim|required');
 
 	$this->form_validation->set_rules('id_penduduk', 'id_penduduk', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -239,6 +287,14 @@ class Penduduk extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
 	xlsWriteLabel($tablehead, $kolomhead++, "No Hp");
 	xlsWriteLabel($tablehead, $kolomhead++, "Id Desa");
+	xlsWriteLabel($tablehead, $kolomhead++, "Pelapor");
+	xlsWriteLabel($tablehead, $kolomhead++, "Korban");
+	xlsWriteLabel($tablehead, $kolomhead++, "Pelaku");
+	xlsWriteLabel($tablehead, $kolomhead++, "Foto Ktp");
+	xlsWriteLabel($tablehead, $kolomhead++, "Foto Ybs");
+	xlsWriteLabel($tablehead, $kolomhead++, "Create By");
+	xlsWriteLabel($tablehead, $kolomhead++, "Create At");
+	xlsWriteLabel($tablehead, $kolomhead++, "Is Active");
 
 	foreach ($this->Penduduk_model->get_all() as $data) {
             $kolombody = 0;
@@ -251,6 +307,14 @@ class Penduduk extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->no_hp);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->id_desa);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->pelapor);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->korban);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->pelaku);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->foto_ktp);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->foto_ybs);
+	    xlsWriteNumber($tablebody, $kolombody++, $data->create_by);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->create_at);
+	    xlsWriteNumber($tablebody, $kolombody++, $data->is_active);
 
 	    $tablebody++;
             $nourut++;
@@ -278,5 +342,5 @@ class Penduduk extends CI_Controller
 /* End of file Penduduk.php */
 /* Location: ./application/controllers/Penduduk.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2022-04-19 05:04:18 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2022-06-13 03:17:37 */
 /* http://harviacode.com */

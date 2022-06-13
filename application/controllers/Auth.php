@@ -56,16 +56,16 @@ class Auth extends CI_Controller {
                 // die($grup."dfdf");
                 // daftarkan session
                 $data = array(
-                    'logged'   => TRUE,
-                    'id_user'  => $row->id_user,
-                    'id_group' => $row->id_group,
-                    'username' => $row->username,
-                    'fullname' => $row->fullname,
-                    'telp'     => $row->telp,
-                    'email'    => $row->email,
-                    'foto'     => $row->foto,
-                    'level'    => $grup,
-                    'id_desa'  => $row->id_desa,
+                    'logged'        => TRUE,
+                    'id_user'       => $row->id_user,
+                    'id_group'      => $row->id_group,
+                    'id_desa'       => $row->id_desa,
+                    'username'      => $row->username,
+                    'fullname'      => $row->fullname,
+                    'telp'          => $row->telp,
+                    'email'         => $row->email,
+                    'foto'          => $row->foto,
+                    'level'         => $grup,
                 );
 
                 //masukkan data user ke session
